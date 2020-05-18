@@ -1,0 +1,9 @@
+Version 1:
+- Arduino Nano V3.
+- 9V 1A Power Adapter AC 100-220V to DC 5.5*2.1mm.
+- RTC DS1307 (realtime clock module).
+- Relay module 24V(control 24 voltage devices).
+- DC-DC MT3608 Step-up Power Supply Module Adjustable 
+  Boost Converter Input 2V-24V to 5V-28V 2A (boost 5V to 24V).
+- Normally closed solenoid valve 24V.
+- Misting Nozzle tees.
