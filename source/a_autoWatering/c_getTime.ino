@@ -42,7 +42,7 @@ void print2digits(int number)
 }
 
 //Set Alarm to 07:00:00 and 19:00:00
-bool alarm(int Hour, int Minute , int Second)
+bool alarm(int Hour, int Minute)
 {
   if ((Hour == 7 || Hour == 19 ) && (Minute >= 00 && Minute <= 15)) return true;
   else return false;
