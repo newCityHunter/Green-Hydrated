@@ -14,5 +14,5 @@ For me, the times are 07:00:00 && 19:00:00 and last 15 mins each time.
 - 24V 1A Power Adapter AC 100-220V to DC 5.5*2.1mm.
 - Misting Nozzle tees.
 #### Little attention:
-- For my clumsiness on this version; if your RTC is set date time already, you need to comment the line 21 "setThisDate();" before upload the code to arduino.
+- For my clumsiness on this version; if your RTC is set date time already, you need to comment the line 21 "setThisDate();" of a_autoWatering.ino file before upload the code to arduino.
 - setThisDate() is using for reset/set date time to local time if RTC time set is incorrect.
