@@ -21,11 +21,11 @@ void displayDate()
     Serial.println();
   } else {
     if (RTC.chipPresent()) {
-      Serial.println("The DS1307 is stopped.  Please run the SetTime");
+      Serial.println("The DS3231 is stopped.  Please run the SetTime");
       Serial.println("example to initialize the time and begin running.");
       Serial.println();
     } else {
-      Serial.println("DS1307 read error!  Please check the circuitry.");
+      Serial.println("DS3231 read error!  Please check the circuitry.");
       Serial.println();
     }
     delay(9000);
