@@ -9,7 +9,7 @@ For me, the times are 07:00:00 && 19:00:00 and last 15 mins each time.
 - Arduino Nano V3.
 - 9V 1A Power Adapter AC 100-220V to DC 5.5*2.1mm.
 - RTC DS3231 (realtime clock module).
-- Relay module 24V(control 24 voltage devices).
+- Relay module 5V.
 - Normally closed solenoid valve 24V.
 - 24V 1A Power Adapter AC 100-220V to DC 5.5*2.1mm.
 - Misting Nozzle tees.
