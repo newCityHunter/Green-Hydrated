@@ -27,12 +27,12 @@ void setThisDate()
   while (!Serial) ; // wait for Arduino Serial Monitor
   delay(200);
   if (parse && config) {
-    Serial.print("DS1307 configured Time=");
+    Serial.print("DS3231 configured Time=");
     Serial.print(__TIME__);
     Serial.print(", Date=");
     Serial.println(__DATE__);
   } else if (parse) {
-    Serial.println("DS1307 Communication Error :-{");
+    Serial.println("DS3231 Communication Error :-{");
     Serial.println("Please check your circuitry");
   } else {
     Serial.print("Could not parse info from the compiler, Time=\"");
