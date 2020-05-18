@@ -27,12 +27,12 @@ void loop() {
 
   if (RTC.read(tm))
   {
-    turnOn = alarm(tm.Hour, tm.Minute, tm.Second);
+    turnOn = alarm(tm.Hour, tm.Minute);
     if(turnOn == true){
       Serial.println("The valve is turned on");
       digitalWrite(valve, HIGH);
       digitalWrite(LED, HIGH);
-    } else
+    } if(turnOn == false)
     {
       digitalWrite(valve, LOW);
       digitalWrite(LED, LOW);
