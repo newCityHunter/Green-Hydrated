@@ -15,5 +15,5 @@ For me, the times are 07:00:00 && 19:00:00 and last 15 mins each time.
 - Misting Nozzle tees.
 #### Little attention:
 - For my clumsiness on this version; if your RTC is set date time already, you need to comment the line 21 "setThisDate();" of a_autoWatering.ino file before upload the code to arduino.
-- If your RTC not set time or need to reset the local time, you need to upload all source to your hardware (inlcuding the line 21 of a_autowatering). And then comment line 21 and re upload all source one more time.
+- If your RTC not set time or need to reset the local time, you need to upload all source to your hardware (inlcuding the line 21 of a_autowatering.ino file). And then comment line 21 and re upload all source one more time.
 - setThisDate() is using for reset/set date time to local time if RTC time set is incorrect.
