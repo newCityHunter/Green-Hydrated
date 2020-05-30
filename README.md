@@ -1,4 +1,4 @@
-# Auto_Watering
+# Green-Hydrated
 The Auto Watering System for Orchids garden
 ## Introduction
 This is a Real Time Embedded System powered by Arduino that can help you to watering your garden automatically.
