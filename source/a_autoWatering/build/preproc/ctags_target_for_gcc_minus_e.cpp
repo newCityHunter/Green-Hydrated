@@ -3,11 +3,13 @@
 # 3 "E:\\workSpace\\Personal_Project\\Auto_Watering\\source\\a_autoWatering\\a_autoWatering.ino" 2
 # 4 "E:\\workSpace\\Personal_Project\\Auto_Watering\\source\\a_autoWatering\\a_autoWatering.ino" 2
 
-int LED = 13;
-int valve = 12;
+const int LED = 13;
+const int valve = 12;
+const int btnSetTime = 2;
 bool turnOn = false;
 
-void setup() {
+void setup()
+{
   //Start the serial port
   Serial.begin(9600);
 
@@ -16,28 +18,41 @@ void setup() {
 
   //Set led
   pinMode(LED, 0x1);
+
+  //Set Valve
   pinMode(valve, 0x1);
 
-  //Set time
-  setThisDate();
+  //Set Button Set Time and handle interrupt
+  pinMode(btnSetTime, 0x2);
 }
 
-void loop() {
+// display time on Serial and check Alarm
+void displayTime() {
   displayDate();
   tmElements_t tm;
-
   if (RTC.read(tm))
   {
-    turnOn = alarm(tm.Hour, tm.Minute, tm.Second);
-    if(turnOn == true){
+    turnOn = alarm(tm.Hour, tm.Minute);
+    if (turnOn == true) {
       Serial.println("The valve is turned on");
       digitalWrite(valve, 0x1);
       digitalWrite(LED, 0x1);
-    } else
+    } if (turnOn == false)
     {
       digitalWrite(valve, 0x0);
       digitalWrite(LED, 0x0);
     }
+  }
+}
+
+void loop()
+{
+  if (digitalRead(btnSetTime) == 0x1)
+  {
+    setThisDate();
+    Serial.println("===Time is reseted===");
+  } else {
+    displayTime();
   }
 }
 # 1 "E:\\workSpace\\Personal_Project\\Auto_Watering\\source\\a_autoWatering\\b_setTime.ino"
@@ -58,7 +73,7 @@ void setThisDate()
   bool config = false;
 
   // get the date and time the compiler was run
-  if (getDate("May 18 2020") && getTime("10:21:33")) {
+  if (getDate("Aug 17 2020") && getTime("18:08:05")) {
     parse = true;
     // and configure the RTC with this info
     if (RTC.write(tm)) {
@@ -70,18 +85,18 @@ void setThisDate()
   while (!Serial) ; // wait for Arduino Serial Monitor
   delay(200);
   if (parse && config) {
-    Serial.print("DS1307 configured Time=");
-    Serial.print("10:21:33");
+    Serial.print("DS3231 configured Time=");
+    Serial.print("18:08:05");
     Serial.print(", Date=");
-    Serial.println("May 18 2020");
+    Serial.println("Aug 17 2020");
   } else if (parse) {
-    Serial.println("DS1307 Communication Error :-{");
+    Serial.println("DS3231 Communication Error :-{");
     Serial.println("Please check your circuitry");
   } else {
     Serial.print("Could not parse info from the compiler, Time=\"");
-    Serial.print("10:21:33");
+    Serial.print("18:08:05");
     Serial.print("\", Date=\"");
-    Serial.print("May 18 2020");
+    Serial.print("Aug 17 2020");
     Serial.println("\"");
   }
 }
@@ -137,11 +152,11 @@ void displayDate()
     Serial.println();
   } else {
     if (RTC.chipPresent()) {
-      Serial.println("The DS1307 is stopped.  Please run the SetTime");
+      Serial.println("The DS3231 is stopped.  Please run the SetTime");
       Serial.println("example to initialize the time and begin running.");
       Serial.println();
     } else {
-      Serial.println("DS1307 read error!  Please check the circuitry.");
+      Serial.println("DS3231 read error!  Please check the circuitry.");
       Serial.println();
     }
     delay(9000);
@@ -158,8 +173,9 @@ void print2digits(int number)
 }
 
 //Set Alarm to 07:00:00 and 19:00:00
-bool alarm(int Hour, int Minute , int Second)
+bool alarm(int Hour, int Minute)
 {
-  if ((Hour == 7 || Hour == 19 ) && (Minute >= 00 && Minute <= 15)) return true;
+  if ((Hour == 7 || Hour == 19 ) && (Minute >= 00 && Minute <= 14)) return true;
   else return false;
 }
+# 1 "E:\\workSpace\\Personal_Project\\Auto_Watering\\source\\a_autoWatering\\d_esp8266_Setting.ino"
